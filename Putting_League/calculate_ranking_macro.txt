@@ -1,0 +1,31 @@
+Sub calculateRanking()
+'
+' Calculate player ranking from all
+' day sheets in the workbook
+'
+  Dim rank As Integer
+  For i = 2 To 999
+    rank = 0
+    Set lookUpCell = Worksheets("Registered Players").Cells(i, 1)
+    Set targetCell = Worksheets("Registered Players").Cells(i, 3)
+    If IsEmpty(lookUpCell) = True Then Exit For
+    For j = 1 To Worksheets.Count() - 2
+      Dim rng As Range
+      Dim ws As Worksheet
+      Dim value As Integer
+      Dim returnValue As Variant
+      Set ws = Sheets(j)
+      Set rng = ws.Range("A:E")
+      On Error Resume Next
+      returnValue = Application.WorksheetFunction.VLookup(lookUpCell, rng, 5, False)
+      If IsEmpty(returnValue) Then
+        value = 0
+      Else
+        value = 1 + returnValue
+      End If
+      rank = rank + value
+      returnValue = Empty
+    Next j
+    targetCell.value = rank
+  Next i
+End Sub
