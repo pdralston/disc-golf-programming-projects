@@ -19,7 +19,7 @@ ACE_HEADER = "Ace"
 WINS_HEADER = "Wins"
 TEAMS_HEADER = "Teams"
 TEAMS_HEADER_COL = 6
-DEFAULT_EXCEL_NAME = "Putting_League_Stat_Tracker_2022.xlsm"
+DEFAULT_EXCEL_NAME = "Putting_League_Stat_Tracker.xlsm"
 
 
 class Randomizer:
