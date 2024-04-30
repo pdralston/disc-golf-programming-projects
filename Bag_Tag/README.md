@@ -12,7 +12,7 @@ This directory contains 3 files of note to you, the TD:
 
 - This README.md/pdf (same file different formats)
 - The Excel sheet BagTags.xlsx
-- An executable script BagTagDistributor.exe
+- A Python script BagTag_Excel.py
 
 In addition to the the documents in this directory you will also need a laptop computer, an internet connection and UDisc. As internet and power are not available on course, you will need to make sure your laptop is charged and hot spot your phone for wifi. You will also be issued a cash box with a bit of money in it for change, typically $40 in the form of $20 in 1's and $20 in 5's. At the conclusion of the event, please get the cash box back to David before Thursday following the monthly so it can be used for Weekly Doubles.
 
@@ -28,9 +28,13 @@ When a player checks in, you will want to record their name, their selected divi
 
 The `Round_Score` and `New_Tag` columns are automatically filled in for you at the end of the round, once you paste in the results to the table at the right. If you notice that the value in that column is still `#N/A` after the UDisc results are entered, that means there is a name discrepancy between how someone checked in and their name in the UDisc app. First use best effort to resolve the discrepancy by copy pasting the registered name into the corresponding `UDisc_Name`. This will correct the issue. If you cannot figure out the discrepancy, simply call out to the participants to determine which name goes with which result.
 
-### BagTagDistributor.exe
+### BagTag_Excel.py
 
-This directory should be downloaded onto your local machine. The automation script will not work within the online OneDrive application.
+This python script can either be ran from terminal or you can create a windows executable by running pyinstaller from the terminal:
+
+```
+pyinstaller --onefile .\BagTag_Excel.py
+```
 
 The UDisc event manager for the Monthly Bag Tag is here: <https://udisc.com/leagues/svdgc-2023-monthly/manage>. Once the round has completed, you will finalize the results on UDisc. This will cause an `Export to CSV` link to appear on the scoring tab of the even manager. You will click this link, open the downloaded file, copy the name and total score columns (Only) and paste those into the Excel file. Resolve any name discrepancies then save and close the Excel sheet.
 
