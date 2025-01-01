@@ -1,5 +1,4 @@
 import csv
-import itertools
 import sys
 import numpy
 import pandas as pd
@@ -8,6 +7,7 @@ BAG_TAG_TRACKER = "BagTags.xlsx"
 NAME_COL = "Name"
 PREV_TAG_COL = "Old_Tag"
 SCORE_COL = "Round_Score"
+TRUE_STATEMENTS = ["yes", "true", "t", "1", "y"]
 
 
 class Player:
@@ -86,6 +86,10 @@ class TagDistributor:
 
 
 def main():
+    print("Welcome to the Bag Tag Distributor!")
+    print("Full instructions on the use of this package can be found")
+    print("on my GitHub at https://github.com/pdralston/disc-golf-programming-projects/tree/main/Bag_Tag.")
+    print("This tool is open source and free to use. Created by David Ralston - 2024")
     if len(sys.argv) >= 2:
         excel_file = sys.argv[1]
     else:
@@ -94,12 +98,16 @@ def main():
     if not excel_file:
         excel_file = BAG_TAG_TRACKER
     if len(sys.argv) == 3:
-        bIsMonthly = sys.argv[2].lower() in ("true", "t", "1")
+        bIsMonthly = sys.argv[2].lower() in TRUE_STATEMENTS
     else:
         bIsMonthly = input(
             "Is this a monthly? T/F: ").lower() in ("true", "t", "1")
+    if ( input("Is your bag tag results the first sheet on the left? T/F: ").lower() in TRUE_STATEMENTS):
+        resultsSheet = 0
+    else:
+        resultsSheet = input("Name of your results sheet: ")
 
-    current_registration = pd.read_excel(excel_file, sheet_name=0, usecols=[
+    current_registration = pd.read_excel(excel_file, sheet_name=resultsSheet, usecols=[
                                          NAME_COL, PREV_TAG_COL, SCORE_COL])
 
     tagDistro = TagDistributor(
